@@ -1,0 +1,155 @@
+%!TEX program = xelatex
+\documentclass[10pt]{beamer}
+\usepackage{amsmath,amsthm}
+\usepackage{amssymb}
+\usepackage{graphics,graphicx}
+%\usepackage{amsrefs}
+\usepackage{ragged2e}
+\usepackage{pst-all}
+\usepackage{pstricks}
+\usepackage{csquotes}
+
+\usepackage[%
+  backend=biber,
+  style=nature,
+  citestyle=verbose-ibid,
+  sorting=nty,
+  natbib=true,
+]{biblatex}
+\addbibresource{ref.bib}
+\AtBeginBibliography{\small}
+\DeclareNameAlias{default}{family-given}
+%\renewcommand{\scriptsize}{\tiny}
+\renewcommand{\footnotesize}{\tiny}
+\def\B(G){\mathcal{T}_{\mathcal{B}_G}}
+\def\bpsp{\begin{pspicture}}
+	\def\epsp{\end{pspicture}}
+\newcommand\arrow[2]{\rotatebox{#1}{\scalebox{2}{\psline[linecolor=#2]{->}(0,0)(.1,0)}}}
+\renewcommand{\baselinestretch}{1.3}
+\def\w{{\sf w}}
+\usetheme{Boadilla}
+\usefonttheme{serif}
+\usefonttheme{professionalfonts}
+\mode<presentation>
+\setbeamertemplate{frame numbering}[fraction]
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{caption}[numbered]
+
+\title{Progress Seminar: Autumn 2024\\ Area of research: }
+\author{ \\by\\ Name (Roll Number)\\Under the supervision of Dr. Name of the supervisor}
+\vspace{.3cm}
+\institute{\includegraphics[scale=0.32]{tulogo.png}\\Department of Mathematical Sciences\\ Tezpur University}\vspace{-.2mm}
+\date{19.12.2024}
+
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+\nocite{*}
+\frame[plain]{\titlepage}
+
+\begin{frame}
+\frametitle{Outline}
+\hfill
+\parbox[t]{.90\textwidth}{
+  \begin{minipage}[c][0.55\textheight]{\textwidth}
+  \tableofcontents
+  \end{minipage}
+  }
+\end{frame}
+\section{Introduction}
+    \begin{frame}\frametitle{Introduction}
+    \small
+	\begin{itemize}
+		 \justifying
+		\item A \textbf{graph} $G$ consists of a finite nonempty set $V$ of objects called vertices and a set $E$ of $2$-element subsets of $V$ called edges. The sets $V$ and $E$ are the vertex set and edge set of $G$, respectively.
+        
+	\end{itemize}
+		\begin{figure}
+            \centering
+			\begin{pspicture}(1,-0.5)(6,1)
+				\psdots[](2,0)(3,0)(4,0)(5,0)(3,1)(4,1)
+				\psline[](2,0)(3,0)(4,0)(5,0)
+                    \psline[](3,0)(3,1)(4,1)(4,0)
+			\end{pspicture}
+			\caption{A graph on six vertices and six edges.}
+			\label{fig:graph}
+		\end{figure}
+\end{frame}
+\begin{frame}{Introduction}
+\small
+    \begin{itemize}\justifying
+        \item There are several matrices associated with a graph, namely, the Adjacency matrix, Incidence matrix, Laplacian matrix and Distance matrix.
+        
+        
+        \item Let $G$ be a connected graph on $n$ vertices with $V(G)=\{1, 2,\ldots,n\}$. Then, the \textit{adjacency matrix} $A(G)=[a_{ij}]$ of $G$ is defined to be the $n\times n$ matrix with $$a_{ij}=\begin{cases}
+            1 & \text{if}\,\,\, i\sim j\\
+            0 & \text{otherwise}.
+        \end{cases}$$
+    \end{itemize}
+\end{frame}
+\begin{frame}\frametitle{Irreducible Matrix}
+\small
+    \justifying
+    \begin{itemize}
+        \item A nonnegative square matrix of order $n$, $n\geq 2$, is called reducible if there exists a permutation matrix $P$ such that $$X=P^T\begin{pmatrix}
+			B & C \\
+			0 & D
+		\end{pmatrix}P,$$ where $B$ and $D$ are square submatrices. A nonnegative square matrix of order $n$, $n\geq2$, is called \textbf{irreducible} if it is not reducible.
+    \end{itemize}
+        
+		
+		\begin{example}
+			The given matrix $$A=\begin{pmatrix}
+			    0 & 1 & 0 & 0 \\
+                    1 & 0 & 1 & 1 \\
+                    0 & 1 & 0 & 0 \\
+                    0 & 1 & 0 & 0 \\
+			\end{pmatrix}$$
+            is irreducible.
+		\end{example}
+\footnotetext{\cite{minc1988nonnegative}}
+\end{frame}
+\begin{frame}{Properties of Irreducible matrix}
+\small
+    \justifying
+    \begin{itemize}
+        \item If $A$ is a $n\times n$ irreducible matrix then $(I_n+A)^{n-1}>0$.
+        
+        \item If $A=[a_{ij}]$ is an irreducible matrix then for each $(i,j)$ there exists an integer $k$ such that $a_{ij}^{(k)}>0$.
+        
+        \item The spectral radius of an irreducible matrix $A$, $\rho(A)$ is a simple eigenvalue of it. Also there is a positive eigenvector corresponding to $\rho(A)$.
+        
+        \item An irreducible matrix has exactly one eigenvector in the set $$\mathbb{E}^n=\left\{(x_1,x_2,\ldots,x_n)\in\mathbb{P}^n\bigg|\sum_{i=1}^{n}{x_i}=1\right\},$$where $\mathbb{P}$ denote the set of all nonnegative real numbers. 
+\end{itemize}
+\footnotetext{\cite{minc1988nonnegative}}
+\end{frame}
+\section{Results}
+\begin{frame}{}
+\small
+    \begin{example}
+			\begin{figure}\centering
+				\begin{pspicture}(-3,-1)(3,1)
+                        %\psgrid[subgriddiv=1,griddots=10,gridlabels=7pt](-3,-1)(3,1)
+                        \psdots[](-1.5,0)(0,0)(1.5,0)(-0.707,0.707)(0.707,0.707)(0,-1)(2.5,0)
+                        \psline[](-1.5,0)(0,0)(1.5,0)(2.5,0)
+                        \psline[](0,0)(0,-1)
+                        \psline[](-0.707,0.707)(0,0)(0.707,0.707)
+				\end{pspicture}
+				\caption{T}
+				\label{fig:path}
+			\end{figure}
+		\end{example}
+\end{frame}
+\section{Future Plans}
+\begin{frame}{Future Plans}
+
+\end{frame}
+\begin{frame}[allowframebreaks]\frametitle{References}
+    \printbibliography[heading=bibnumbered]
+\end{frame}
+\begin{frame}
+	\begin{center}
+		{\fontsize{30}{40}\selectfont\textcolor{blue}{Thank You!}}
+	\end{center}
+\end{frame}
+\end{document}
